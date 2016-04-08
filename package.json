@@ -1,7 +1,7 @@
 {
   "name": "sem",
   "author": "Jamen Marzonie",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A compiler for simple expression models.",
   "main": "lib",
   "repository": {
