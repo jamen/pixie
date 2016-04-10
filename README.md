@@ -32,11 +32,11 @@ $ npm install --save sem
 Usable inside of Node.js or browser.
 
 # Ideas
- - *Positional:* It works through positional data.  `Template` objects hold locations to expressions, then an engine can compile these however they want.
- - *Right-to-left:* Interpolating right-to-left allows sem to need less calculating for the locations and slicing.
- - *Expressions:* Anything between the opening expression token and closing expression token is open for interpretation by the engine.
- - *Reusable:* Sem working through `Template` objects allows it to be highly reusable (parse once, compile over and over) and serializable.
- - *Pluggable*: You can hook in custom engines with `sem.compile` to interpret the expressions in a custom way.
+ - **Positional:** It works through positional data.  `Template` objects hold locations to expressions, then an engine can compile these however they want.
+ - **Right-to-left:** Interpolating right-to-left allows sem to need less calculating for the locations and slicing.
+ - **Expressions:** Anything between the opening expression token and closing expression token is open for interpretation by the engine.
+ - **Reusable:** Sem working through `Template` objects allows it to be highly reusable (parse once, compile over and over) and serializable.
+ - **Pluggable:** You can hook in custom engines with `sem.compile` to interpret the expressions in a custom way.
 
 ## Usage
 ```javascript
