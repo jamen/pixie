@@ -6,18 +6,21 @@ var sem = require('../lib');
 test('rendering', function(t) {
   t.plan(2);
 
-  // Data
-  const source = new Buffer('#{bar} Hello #{world}. Foo #{bar}.');
-  const legacy = source.slice();
+  // Template
+  var source = '#{foo} bar #{baz} qux #{foo}';
+  var data = {foo: 'hello', baz: 'world'};
 
-  // Create a template
-  const result = sem.render(source, {bar: 'B', world: '0'});
+  // Rendering buffer
   t.same(
-    result.toString(),
-    'B Hello 0. Foo B.',
-    'rendering correctly.'
+    sem.render(new Buffer(source), {data: data}),
+    new Buffer('hello bar world qux hello'),
+    'compiles buffers'
   );
 
-  // Unmalformed source;
-  t.same(source, legacy, 'source unmalformed.');
+  // Rendering string
+  t.same(
+    sem.render(source, {data: data}),
+    'hello bar world qux hello',
+    'compiles strings'
+  );
 });

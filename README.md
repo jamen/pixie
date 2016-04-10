@@ -1,97 +1,48 @@
-# `sem`
-> A "Simple Expression Model" templating engine.
+# sem
+> Expression-based templating engine for reusability and injectable semantics.
 
-Sem is a simplistic expression model templating engine.  This means there is no statements, only data interpolation...  The `parse` function captures positional information alongside a source using the `Template` object, then slices those positions right-to-left using `compile`.
+Sem (Semantic Expression Model) is a simplistic expression-based templating engine that can work on top of multiple types of data (stings, buffers, arrays, etc).  It parses where expressions are located with `sem.parse` in a reusable `Template` object.  From here, you can take the `Template` to `sem.compile` which allows you to plug different engines in, alongside some data, to create semantics from the expressions, and ultimately get an output.  The whole process can be reduced to one with `sem.render`.
+
+Template:
+```
+Hello ${^world}
+```
+
+Example engine:
+```javascript
+function myEngine(expression, data) {
+  if (expression[0] === '^') {
+    var name = expression.slice(1);
+    return Math.pow(data[name]);
+  }
+}
+```
+
+Script:
+```javascript
+const output = sem.render(source, {  });
+console.log(output);
+// => "Hello 16"
+```
 
 ## Installation
 ```shell
 $ npm install --save sem
 ```
+Usable inside of Node.js or browser.
+
+# Ideas
+ - *Positional:* It works through positional data.  `Template` objects hold locations to expressions, then an engine can compile these however they want.
+ - *Right-to-left:* Interpolating right-to-left allows sem to need less calculating for the locations and slicing.
+ - *Expressions:* Anything between the opening expression token and closing expression token is open for interpretation by the engine.
+ - *Reusable:* Sem working through `Template` objects allows it to be highly reusable (parse once, compile over and over) and serializable.
+ - *Pluggable*: You can hook in custom engines with `sem.compile` to interpret the expressions in a custom way.
 
 ## Usage
 ```javascript
 const sem = require('sem');
 ```
-### `sem.render(source, options)`
-Perform a _source to source_ compile (`sem.parse()` -> `sem.compile()`).
- - `options` (`Object`): Passed into `sem.parse(foo, options)` and `sem.compile(foo, options)`.
-
-Example:
-```
-Hello %{location}
-```
-```javascript
-const output = sem.render(input, {
-  location: 'world',
-  prefix: '%{'
-});
-console.log(output);
-```
-```
-Hello world
-```
-
-### `sem.parse(source, options)`
-Turn a `Buffer` source into a `Template`.
- - `source` (`Buffer`): Source to parse.
- - `options` (`Object`): Parsing options.
-   - `options.prefix` (`String`): Expression opening syntax (default: `#{`)
-   - `options.suffix` (`String`): Expression closing syntax (default: '}')
-
-Example:
-```
-Foo @bar&
-```
-```javascript
-const template = sem.parse(input, {
-  prefix: '@',
-  suffix: '&'
-});
-console.log(template);
-```
-```
-Template {                                    
-  source: <Buffer 46 6f 6f 20 40 62 61 72 26>,
-  pos: [
-    [ 'bar', 4, 9 ]
-  ],                   
-  meta: {}
-}                                  
-```
-
-### `sem.compile(template, locals)`
-Compile a `Template` to a `Buffer` source with the provided `locals`.
- - `template` (`Template`): The template to compile.
- - `locals` (`Object`): The locals to use.
-
-Example:
-```
-Template {                                    
-  source: <Buffer 46 6f 6f 20 40 62 61 72 26>,
-  pos: [
-    [ 'bar', 4, 9 ]
-  ],                   
-  meta: {}
-}
-```
-```javascript
-const output = sem.compile(template, {
-  bar: 'qux'
-});
-console.log(output);
-```
-```
-Foo qux
-```
-
-### `new Template(source, pos, [meta])`
-Am object that holds positional data to slice points.
- - `source` (`Buffer`): The source `pos` applies to.
- - `pos` (`Array`): Positional data, a.k.a. slice points.
- - `meta` (`Object`): Metadata information about the template.
-
-Note that `sem.parse()` creates these, and `sem.compile()` serializes these, then `sem.render` is just both.  So you should rarely need to touch `Template`.
-
+See [docs](docs/) for more information.
 
 ## Credits
 | ![jamen][avatar] |

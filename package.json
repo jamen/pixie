@@ -2,7 +2,7 @@
   "name": "sem",
   "author": "Jamen Marzonie",
   "version": "0.1.1",
-  "description": "A \"Simple Expression Model\" templating engine.",
+  "description": "Expression-based templating engine for reusability and injectable semantics.",
   "main": "lib",
   "repository": {
     "type": "git",
@@ -13,15 +13,19 @@
   },
   "private": false,
   "files": [
-    "lib"
+    "lib",
+    "index.js"
   ],
   "devDependencies": {
     "eslint": "^2.7.0",
     "eslint-config-google": "^0.4.0",
+    "precommit": "^1.2.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
   },
   "dependencies": {
-    "balanced-match": "^0.4.0"
-  }
+    "component-indexof": "0.0.3",
+    "concat": "github:jamen/node-concat"
+  },
+  "license": "MIT"
 }

@@ -4,16 +4,25 @@ var test = require('tape');
 var sem = require('../lib');
 
 test('compiling', function(t) {
-  t.plan(1);
+  t.plan(2);
 
-  // Data
-  const template = sem.parse(new Buffer('#{bar} Hello #{world}. Foo #{bar}.'));
+  // Template
+  var source = '#{foo} bar #{baz} qux #{foo}';
+  var data = {foo: 'hello', baz: 'world'};
 
-  // Compile a template
-  const result = sem.compile(template, {bar: 'B', world: '0'});
+  // Compiling buffer-based template
+  var buftpl = sem.parse(new Buffer(source));
   t.same(
-    result.toString(),
-    'B Hello 0. Foo B.',
-    'compiling correctly.'
+    sem.compile(buftpl, {data: data}),
+    new Buffer('hello bar world qux hello'),
+    'compiles buffers'
+  );
+
+  // Compiling string-based template
+  var strtpl = sem.parse(source);
+  t.same(
+    sem.compile(strtpl, {data: data}),
+    'hello bar world qux hello',
+    'compiles strings'
   );
 });
