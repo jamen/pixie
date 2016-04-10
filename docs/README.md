@@ -1,2 +1,3 @@
 # Documentation
-Documentation coming soon.
+Official documentation for sem.
+  - [API](API.md)
