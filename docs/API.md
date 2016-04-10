@@ -17,8 +17,8 @@
 <dt><a href="#parse">parse</a> ⇒ <code><a href="#Template">Template</a></code></dt>
 <dd><p>Parse a source into a <code>Template</code> object.</p>
 </dd>
-<dt><a href="#render">render</a></dt>
-<dd><p>Parse and compile a template in one action.</p>
+<dt><a href="#render">render</a> ⇒ <code>Buffer</code> | <code>String</code> | <code>Array</code></dt>
+<dd><p>Parse and compile a source in one action.</p>
 </dd>
 </dl>
 
@@ -110,10 +110,11 @@ Parse a source into a `Template` object.
 | [opts.meta] | <code>Object</code> |  | Metadata info passed into template. |
 
 <a name="render"></a>
-## render
-Parse and compile a template in one action.
+## render ⇒ <code>Buffer</code> &#124; <code>String</code> &#124; <code>Array</code>
+Parse and compile a source in one action.
 
 **Kind**: global variable  
+**Returns**: <code>Buffer</code> &#124; <code>String</code> &#124; <code>Array</code> - The compiled template of the source.  
 
 | Param | Type | Description |
 | --- | --- | --- |
