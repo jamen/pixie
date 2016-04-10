@@ -33,7 +33,7 @@ $ npm install --save sem
 ```
 Usable inside of Node.js or browser.
 
-# Ideas
+## Ideas
  - **Positional:** It works through positional data.  `Template` objects hold locations to expressions, then an engine can compile these however they want.
  - **Right-to-left:** Interpolating right-to-left allows sem to need less calculating for the locations and slicing.
  - **Expressions:** Anything between the opening expression token and closing expression token is open for interpretation by the engine.
