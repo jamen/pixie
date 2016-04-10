@@ -14,17 +14,17 @@ function pow(expression, data) {
 }
 ```
 
+Templates:
+```
+Hello ${^world}
+```
+
 Example script:
 ```javascript
 const data = {world: 4};
 const output = sem.render(source, { engines: [pow], data });
 console.log(output);
 // => "Hello 16"
-```
-
-Templates:
-```
-Hello ${^world}
 ```
 
 ## Installation
