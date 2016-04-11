@@ -9,7 +9,7 @@
     "url": "https://github.com/jamen/sem"
   },
   "scripts": {
-    "test": "eslint lib test; tape 'test/*.js' | tap-spec"
+    "test": "eslint lib; tape 'test/*.js' | tap-spec"
   },
   "private": false,
   "files": [
@@ -22,10 +22,6 @@
     "precommit": "^1.2.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
-  },
-  "dependencies": {
-    "component-indexof": "0.0.3",
-    "concat": "github:jamen/node-concat"
   },
   "license": "MIT"
 }
