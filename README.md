@@ -1,7 +1,7 @@
 # sem
 > Expression-based templating engine for reusability and injectable semantics.
 
-Sem (Semantic Expression Model) is a simplistic expression-based templating engine that can work on top of multiple types of data (stings, buffers, arrays, etc).  It parses where expressions are located with `sem.parse` in a reusable `Template` object.  From here, you can take the `Template` to `sem.compile` which allows you to plug different engines in, alongside some data, to create semantics from the expressions, and ultimately get an output.  The whole process can be reduced to one with `sem.render`.
+Sem (Semantic Expression Model) is a simplistic expression-based templating engine that can work on top of multiple types of data (strings, buffers, arrays, etc).  It parses where expressions are located with `sem.parse` in a reusable `Template` object.  From here, you can take the `Template` to `sem.compile` which allows you to plug different engines in, alongside some data, to create semantics from the expressions, and ultimately get an output.  The whole process can be reduced to one with `sem.render`.
 
 Engines:
 ```javascript
