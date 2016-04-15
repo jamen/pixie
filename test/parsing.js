@@ -4,32 +4,30 @@ var test = require('tape');
 var sem = require('../lib');
 
 test('parsing', function(t) {
-  t.deepEqual(sem.parse('{{foo}} bar {{baz}} qux {{foo}}'),
+  t.same(sem.parse('{{foo}} bar {{baz}} qux {{foo}}'),
     {
       partials: ['', ' bar ', ' qux ', ''],
       expressions: ['foo', 'baz', 'foo']
-    }
+    },
+    'simple template'
   );
 
-  t.deepEqual(sem.parse('{{foo} bar {{baz}} qux {{foo}}'),
-    {
-      partials: [ '', ' qux ', '' ],
-      expressions: [ 'foo} bar {{baz', 'foo' ]
-    }
-  );
+  // t.same(
+  //   sem.parse('{{foo bar {{baz}} qux foo}}'),
+  //   {
+  //     partials: ['', ''],
+  //     expressions: ['foo bar {{baz}} qux foo']
+  //   },
+  //   'nesting'
+  // );
 
-  t.deepEqual(sem.parse('{{foo bar {{baz}} qux foo}}'),
-    {
-      partials: [ '', ' qux foo}}' ],
-      expressions: [ 'foo bar {{baz' ]
-    }
-  );
-
-  t.deepEqual(sem.parse('foo bar baz qux foo'),
+  t.deepEqual(
+    sem.parse('foo bar baz qux foo'),
     {
       partials: ['foo bar baz qux foo'],
       expressions: []
-    }
+    },
+    'no expressions'
   );
 
   t.end();
