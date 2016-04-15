@@ -6,10 +6,8 @@ Vajra is a simplistic expression-based templating engine that can work on top of
 Engines:
 ```javascript
 function pow(expression, data) {
-  expression = expression.toString();
   if (expression[0] === '^') {
-    var name = expression.slice(1);
-    return Math.pow(data[name]);
+    return Math.pow(data[expression.slice(1)]);
   }
 }
 ```
@@ -22,7 +20,7 @@ Hello ${^world}
 Example script:
 ```javascript
 const data = {world: 4};
-const output = vajra.render(source, { engines: [pow], data });
+const output = vajra.render(source, data, {engines: [pow]});
 console.log(output);
 // => "Hello 16"
 ```
