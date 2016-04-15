@@ -2,7 +2,7 @@
 /* eslint require-jsdoc: 0 */
 
 var test = require('tape');
-var sem = require('../lib');
+var vajra = require('../lib');
 
 test('compiling', function(t) {
   var data = {foo: 4, baz: 'world'};
@@ -23,37 +23,37 @@ test('compiling', function(t) {
     return '(' + data + ')';
   }
 
-  var neng = sem.parse('{{foo}} bar {{baz}} qux {{foo}}');
+  var neng = vajra.parse('{{foo}} bar {{baz}} qux {{foo}}');
   t.same(
-    sem.compile(neng, data),
+    vajra.compile(neng, data),
     '4 bar world qux 4',
     'no engines'
   );
 
-  var yeng = sem.parse('{{foo}} bar {{baz}} qux {{^foo}}');
+  var yeng = vajra.parse('{{foo}} bar {{baz}} qux {{^foo}}');
   t.same(
-    sem.compile(yeng, data, {engines: [pow]}),
+    vajra.compile(yeng, data, {engines: [pow]}),
     '4 bar world qux 16',
     'single engine'
   );
 
-  var myeng = sem.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  var myeng = vajra.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
   t.same(
-    sem.compile(myeng, data, {engines: [pow, reverse]}),
+    vajra.compile(myeng, data, {engines: [pow, reverse]}),
     '4 bar dlrow qux 16',
     'multple engines'
   );
 
-  var sneng = sem.parse('{{foo}} bar {{baz}} qux {{foo}}');
+  var sneng = vajra.parse('{{foo}} bar {{baz}} qux {{foo}}');
   t.same(
-    sem.compile(sneng, data, {serialize: capture}),
+    vajra.compile(sneng, data, {serialize: capture}),
     '(4) bar (world) qux (4)',
     'serializing'
   );
 
-  var syeng = sem.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  var syeng = vajra.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
   t.same(
-    sem.compile(syeng, data, {serialize: capture, engines: [pow, reverse]}),
+    vajra.compile(syeng, data, {serialize: capture, engines: [pow, reverse]}),
     '(4) bar (dlrow) qux (16)',
     'engines with serializing'
   );

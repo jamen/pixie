@@ -1,12 +1,12 @@
 {
-  "name": "sem",
+  "name": "vajra",
   "author": "Jamen Marzonie",
   "version": "0.1.2-2",
   "description": "Expression-based templating engine for reusability and injectable semantics.",
   "main": "lib",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jamen/sem"
+    "url": "https://github.com/jamen/vajra"
   },
   "scripts": {
     "test": "eslint lib; tape 'test/*.js' | tap-spec"
