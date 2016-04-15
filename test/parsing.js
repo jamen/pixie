@@ -10,6 +10,18 @@ test('parsing', function(t) {
       expressions: ['foo', 'baz', 'foo']
     }
   );
+  t.deepEqual(sem.parse('{{foo} bar {{baz}} qux {{foo}}'),
+    {
+      partials: [ '', ' qux ', '' ],
+      expressions: [ 'foo} bar {{baz', 'foo' ]
+    }
+  );
+  t.deepEqual(sem.parse('{{foo bar {{baz}} qux foo}}'),
+    {
+      partials: [ '', ' qux ', '' ],
+      expressions: [ 'foo} bar {{baz', 'foo' ]
+    }
+  );
   t.notOk(sem.parse('foo bar baz qux foo'));
   t.end();
 });
