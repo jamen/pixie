@@ -1,3 +1,3 @@
 # Documentation
-Official documentation for sem.
+Official documentation for vajra.
   - [API](API.md)
