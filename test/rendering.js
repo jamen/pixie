@@ -3,7 +3,7 @@
 var test = require('tape');
 var sem = require('../lib');
 
-test('rendering', function(t) {
+test.skip('rendering', function(t) {
   t.plan(1);
 
   // Template
