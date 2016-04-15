@@ -1,7 +1,7 @@
 {
   "name": "vajra",
   "author": "Jamen Marzonie",
-  "version": "0.1.2-2",
+  "version": "1.0.0-0",
   "description": "Expression-based templating engine for reusability and injectable semantics.",
   "main": "lib",
   "repository": {
