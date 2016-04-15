@@ -10,5 +10,6 @@ test('parsing', function(t) {
       expressions: ['foo', 'baz', 'foo']
     }
   );
+  t.notOk(sem.parse('foo bar baz qux foo'));
   t.end();
 });
