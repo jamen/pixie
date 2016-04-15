@@ -20,12 +20,17 @@ test('parsing', function(t) {
 
   t.deepEqual(sem.parse('{{foo bar {{baz}} qux foo}}'),
     {
-      partials: [ '', ' qux ', '' ],
-      expressions: [ 'foo} bar {{baz', 'foo' ]
+      partials: [ '', ' qux foo}}' ],
+      expressions: [ 'foo bar {{baz' ]
     }
   );
 
-  t.notOk(sem.parse('foo bar baz qux foo'));
+  t.deepEqual(sem.parse('foo bar baz qux foo'),
+    {
+      partials: ['foo bar baz qux foo'],
+      expressions: []
+    }
+  );
 
   t.end();
 });
