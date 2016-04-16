@@ -2,7 +2,7 @@
   "name": "pixie",
   "author": "Jamen Marzonie",
   "version": "0.1.0",
-  "description": "Expression-based templating engine for reusability and injectable semantics.",
+  "description": "A lightweight, pluggable, and browser/node-compatible templating engine.",
   "main": "lib",
   "repository": {
     "type": "git",
