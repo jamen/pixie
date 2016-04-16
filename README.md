@@ -68,6 +68,7 @@ See [docs](docs/) for more information.
 
 ## Credits
  - Thanks to [Dustin][dustin] for designing logo.
+
 | ![jamen][avatar] |
 |:---:|
 | [Jamen Marzonie][github] |
