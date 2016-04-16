@@ -1,3 +1,3 @@
 # Documentation
-Official documentation for sem.
+Official documentation for pixie.
   - [API](API.md)

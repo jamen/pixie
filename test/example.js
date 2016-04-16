@@ -1,10 +1,10 @@
 'use strict';
 
 var test = require('tape');
-var sem = require('../lib');
+var pixie = require('../lib');
 
 var source = 'Hello {{test}} world {{foo}}';
-var tpl = sem.parse(source);
+var tpl = pixie.parse(source);
 
 test('example', function(t) {
   console.log('Source:\n', source);

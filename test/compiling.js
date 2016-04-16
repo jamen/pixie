@@ -1,20 +1,62 @@
 'use strict';
+/* eslint require-jsdoc: 0 */
 
 var test = require('tape');
-var sem = require('../lib');
+var pixie = require('../lib');
 
 test('compiling', function(t) {
-  t.plan(1);
+  var data = {foo: 4, baz: 'world'};
 
-  // Template
-  var source = '{{foo}} bar {{baz}} qux {{foo}}';
-  var data = {foo: 'hello', baz: 'world'};
+  function pow(expression, data) {
+    if (expression[0] === '^') {
+      return Math.pow(data[expression.slice(1)], 2);
+    }
+  }
 
-  // Compiling template
-  var tpl = sem.parse(source);
+  function reverse(expression, data) {
+    if (expression[0] === '~') {
+      return data[expression.slice(1)].split('').reverse().join('');
+    }
+  }
+
+  function capture(data) {
+    return '(' + data + ')';
+  }
+
+  var neng = pixie.parse('{{foo}} bar {{baz}} qux {{foo}}');
   t.same(
-    sem.compile(tpl, data),
-    'hello bar world qux hello',
-    'correct output'
+    pixie.compile(neng, data),
+    '4 bar world qux 4',
+    'no engines'
   );
+
+  var yeng = pixie.parse('{{foo}} bar {{baz}} qux {{^foo}}');
+  t.same(
+    pixie.compile(yeng, data, {engines: [pow]}),
+    '4 bar world qux 16',
+    'single engine'
+  );
+
+  var myeng = pixie.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  t.same(
+    pixie.compile(myeng, data, {engines: [pow, reverse]}),
+    '4 bar dlrow qux 16',
+    'multple engines'
+  );
+
+  var sneng = pixie.parse('{{foo}} bar {{baz}} qux {{foo}}');
+  t.same(
+    pixie.compile(sneng, data, {serialize: capture}),
+    '(4) bar (world) qux (4)',
+    'serializing'
+  );
+
+  var syeng = pixie.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  t.same(
+    pixie.compile(syeng, data, {serialize: capture, engines: [pow, reverse]}),
+    '(4) bar (dlrow) qux (16)',
+    'engines with serializing'
+  );
+
+  t.end();
 });
