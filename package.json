@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "eslint lib; tape 'test/*.js' | tap-spec",
-    "bench": "node benchmark"
+    "bench": "node bench"
   },
   "private": false,
   "files": [
