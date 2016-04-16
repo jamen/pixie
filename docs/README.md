@@ -1,3 +1,3 @@
 # Documentation
-Official documentation for vajra.
+Official documentation for pixie.
   - [API](API.md)

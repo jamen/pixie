@@ -1,39 +1,51 @@
-# Vajra
+# Pixie
 > Expression-based templating engine for reusability and injectable semantics.
 
-Vajra is a simplistic expression-based templating engine that can work on top of multiple types of data (strings, buffers, arrays, etc).  It parses where expressions are located with `vajra.parse` in a reusable `Template` object.  From here, you can take the `Template` to `vajra.compile` which allows you to plug different engines in, alongside some data, to create semantics from the expressions, and ultimately get an output.  The whole process can be reduced to one with `vajra.render`.
-
-Engines:
-```javascript
-function pow(expression, data) {
-  if (expression[0] === '^') {
-    return Math.pow(data[expression.slice(1)]);
-  }
-}
-```
+Pixie is a simple templating library, where "expressions" are points where new data goes, such as `{{foobar}}`.  You can plug in "engines" to Pixie to interpret these expressions in a custom way.  This allows you to build syntax and semantics inside of templates in a modular way.  Pixie itself is very lightweight, since it only provides the tools necessary to built
 
 Templates:
+```html
+<div class='foo-{{bar}}'>
+  <p>Hello {{^world}}</p>
+</div>
 ```
-Hello ${^world}
+Pixie templates contain expressions, and here in the example those would be `{{bar}}` and `{{^world}}` .  Expressions are points in the source where you want to fill in new data later on.  In Pixie, expressions can be opened and closed with whatever you want, but the defaults are `{{` to open and `}}` to close...  See [docs/TAGS](docs/TAGS.md) for more information.
+
+Engines:
+```
+Hello {{^world}}
+```
+```javascript
+// An engine that capitalizes the first letter of the selected data.
+function capitalize(expression, data) {
+  if (expression[0] === '^') {
+    return expression[1].toUpperCase() + expression.slice(2);
+  }
+}
+
+pixie.render(input, {
+  // Template data
+  world: 'earth'
+}, {
+  // Load capitalization engine.
+  engines: [captialize]
+});
+```
+```
+Hello Earth!
 ```
 
-Example script:
-```javascript
-const data = {world: 4};
-const output = vajra.render(source, data, {engines: [pow]});
-console.log(output);
-// => "Hello 16"
-```
+
 
 ## Installation
 ```shell
-$ npm install --save vajra
+$ npm install --save pixie
 ```
 Usable inside of Node.js or browser.
 
 ## Usage
 ```javascript
-const vajra = require('vajra');
+const pixie = require('pixie');
 ```
 See [docs](docs/) for more information.
 

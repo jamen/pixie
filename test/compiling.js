@@ -2,7 +2,7 @@
 /* eslint require-jsdoc: 0 */
 
 var test = require('tape');
-var vajra = require('../lib');
+var pixie = require('../lib');
 
 test('compiling', function(t) {
   var data = {foo: 4, baz: 'world'};
@@ -23,37 +23,37 @@ test('compiling', function(t) {
     return '(' + data + ')';
   }
 
-  var neng = vajra.parse('{{foo}} bar {{baz}} qux {{foo}}');
+  var neng = pixie.parse('{{foo}} bar {{baz}} qux {{foo}}');
   t.same(
-    vajra.compile(neng, data),
+    pixie.compile(neng, data),
     '4 bar world qux 4',
     'no engines'
   );
 
-  var yeng = vajra.parse('{{foo}} bar {{baz}} qux {{^foo}}');
+  var yeng = pixie.parse('{{foo}} bar {{baz}} qux {{^foo}}');
   t.same(
-    vajra.compile(yeng, data, {engines: [pow]}),
+    pixie.compile(yeng, data, {engines: [pow]}),
     '4 bar world qux 16',
     'single engine'
   );
 
-  var myeng = vajra.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  var myeng = pixie.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
   t.same(
-    vajra.compile(myeng, data, {engines: [pow, reverse]}),
+    pixie.compile(myeng, data, {engines: [pow, reverse]}),
     '4 bar dlrow qux 16',
     'multple engines'
   );
 
-  var sneng = vajra.parse('{{foo}} bar {{baz}} qux {{foo}}');
+  var sneng = pixie.parse('{{foo}} bar {{baz}} qux {{foo}}');
   t.same(
-    vajra.compile(sneng, data, {serialize: capture}),
+    pixie.compile(sneng, data, {serialize: capture}),
     '(4) bar (world) qux (4)',
     'serializing'
   );
 
-  var syeng = vajra.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
+  var syeng = pixie.parse('{{foo}} bar {{~baz}} qux {{^foo}}');
   t.same(
-    vajra.compile(syeng, data, {serialize: capture, engines: [pow, reverse]}),
+    pixie.compile(syeng, data, {serialize: capture, engines: [pow, reverse]}),
     '(4) bar (dlrow) qux (16)',
     'engines with serializing'
   );

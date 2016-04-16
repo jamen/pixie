@@ -1,12 +1,12 @@
 {
-  "name": "vajra",
+  "name": "pixie",
   "author": "Jamen Marzonie",
   "version": "1.0.0-0",
   "description": "Expression-based templating engine for reusability and injectable semantics.",
   "main": "lib",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jamen/vajra"
+    "url": "https://github.com/jamen/pixie"
   },
   "scripts": {
     "test": "eslint lib; tape 'test/*.js' | tap-spec"
