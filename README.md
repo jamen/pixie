@@ -1,4 +1,4 @@
-<h1 align="center"><img src="docs/logo.svg" alt="Pixie" width="400"></h1>
+<h1 align="center"><img src="https://cdn.rawgit.com/jamen/pixie/master/docs/logo.svg" alt="Pixie" width="400"></h1>
 > A lightweight, pluggable, and browser/node-compatible  templating engine.
 
 Pixie is a simple templating library, where _expressions_ are points where new data goes (such as `{{foobar}}`).  You can plug in custom _engines_ into Pixie in order to interpret these expressions however you want.  This allows you to build syntax and semantics inside of templates in a modular way.  Pixie itself is very lightweight, since it only provides the tools necessary to inject data and interpret the expressions.  It also works inside both the browser or Node.js.
