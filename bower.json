@@ -1,0 +1,17 @@
+{
+  "name": "pixie",
+  "description": "A lightweight, pluggable, and browser/node-compatible templating engine.",
+  "main": "index.js",
+  "authors": [
+    "Jamen Marzonie"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jamen/pixie",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "bench"
+  ]
+}
