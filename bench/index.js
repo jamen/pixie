@@ -2,11 +2,14 @@
 
 var bench = require('./_helper');
 var pixie = require('../lib');
+var hb = require('handlebars');
 var test = bench.create();
 var ss = bench.small;
 var ls = bench.large;
 var small = pixie.parse(ss);
 var large = pixie.parse(ls);
+var hbs = hb.compile(ss);
+var hbl = hb.compile(ls);
 var data = bench.data;
 var opts = {engines: [bench.caps]};
 
@@ -48,6 +51,14 @@ test.add('Rendering small with engines', function() {
 
 test.add('Rendering large with engines', function() {
   pixie.render(ls, data, opts);
+});
+
+test.add('Handlebars small comparison', function() {
+  hbs(data);
+});
+
+test.add('Handlebars large comparison', function() {
+  hbl(data);
 });
 
 test.on('error', console.error);
