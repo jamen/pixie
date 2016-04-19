@@ -41,7 +41,7 @@ test('compiling', function(t) {
   t.same(
     pixie.compile(myeng, data, {engines: [pow, reverse]}),
     '4 bar dlrow qux 16',
-    'multple engines'
+    'multiple engines'
   );
 
   var sneng = pixie.parse('{{foo}} bar {{baz}} qux {{foo}}');
