@@ -9,7 +9,6 @@ var _pass = function _pass(a) {
   * @param {Object} [options] - Options for parsing.
   * @return {Object} A template object used for compiling.
   */
-
 var parse = exports.parse = function parse(source, options) {
   options = options || {};
   var partials = [];
