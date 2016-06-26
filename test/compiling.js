@@ -1,8 +1,7 @@
-'use strict';
 /* eslint require-jsdoc: 0 */
 
 var test = require('tape');
-var pixie = require('../lib');
+var pixie = require('..');
 
 test('compiling', function(t) {
   var data = {foo: 4, baz: 'world'};

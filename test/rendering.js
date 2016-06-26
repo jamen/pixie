@@ -1,7 +1,5 @@
-'use strict';
-
 var test = require('tape');
-var pixie = require('../lib');
+var pixie = require('..');
 
 test.skip('rendering', function(t) {
   var data = {foo: 'hello', baz: 'world'};

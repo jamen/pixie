@@ -3,7 +3,7 @@
   "author": "Jamen Marzonie",
   "version": "0.1.0",
   "description": "A lightweight, pluggable, and browser/node-compatible templating engine.",
-  "main": "lib",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamen/pixie"
@@ -14,7 +14,6 @@
   },
   "private": false,
   "files": [
-    "lib",
     "index.js"
   ],
   "devDependencies": {
