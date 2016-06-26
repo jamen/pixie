@@ -11,24 +11,13 @@ Usable inside of the browser with Browserify/Webpack/other bundlers.
 
 ## Usage
 ```javascript
-const pixie = require('pixie');
-
-// - Rendering
-pixie.render(
-  'Hello {{world}}',
-  {world: 'foo'}
-);
-// => 'Hello foo'
-
-// - Parsing
 pixie.parse('Hello {{world}}');
-// => { partials: ['Hello ', ''], expressions: ['world'] }
+// => [['Hello', ''], ['world']]
 
-// - Compiling
-pixie.compile(
-  { partials: ['Hello', ''], expressions: ['world'] },
-  { world: 'Earth' }
-);
+pixie.compile([['Hello', ''], ['world']], {world: 'Mars'});
+// => 'Hello Mars'
+
+pixie.render('Hello {{world}}', {world: 'Earth'});
 // => 'Hello Earth'
 ```
 See [docs](docs/) for more information.
