@@ -1,7 +1,5 @@
-'use strict';
-
 var bench = require('./_helper');
-var pixie = require('../lib');
+var pixie = require('..');
 var hb = require('handlebars');
 var test = bench.create();
 var ss = bench.small;

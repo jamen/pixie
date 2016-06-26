@@ -1,5 +1,3 @@
-'use strict';
-
 var read = require('fs').readFileSync;
 var join = require('path').join;
 var Suite = require('benchmark').Suite;

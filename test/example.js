@@ -1,7 +1,5 @@
-'use strict';
-
 var test = require('tape');
-var pixie = require('../lib');
+var pixie = require('..');
 
 var source = 'Hello {{test}} world {{foo}}';
 var tpl = pixie.parse(source);

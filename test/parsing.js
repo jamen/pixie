@@ -1,32 +1,15 @@
-'use strict';
-
 var test = require('tape');
-var pixie = require('../lib');
+var pixie = require('..');
 
 test('parsing', function(t) {
   t.same(pixie.parse('{{foo}} bar {{baz}} qux {{foo}}'),
-    {
-      partials: ['', ' bar ', ' qux ', ''],
-      expressions: ['foo', 'baz', 'foo']
-    },
+    [['', ' bar ', ' qux ', ''], ['foo', 'baz', 'foo']],
     'simple template'
   );
 
-  // t.same(
-  //   pixie.parse('{{foo bar {{baz}} qux foo}}'),
-  //   {
-  //     partials: ['', ''],
-  //     expressions: ['foo bar {{baz}} qux foo']
-  //   },
-  //   'nesting'
-  // );
-
   t.deepEqual(
     pixie.parse('foo bar baz qux foo'),
-    {
-      partials: ['foo bar baz qux foo'],
-      expressions: []
-    },
+    [['foo bar baz qux foo'], []],
     'no expressions'
   );
 
