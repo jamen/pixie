@@ -1,13 +1,28 @@
 [<h1 align="center"><img src="https://cdn.rawgit.com/jamen/pixie/master/docs/logo.svg" alt="Pixie" width="500"><br><br></h1>][dustin]
-> A lightweight, pluggable, and browser/node-compatible  templating engine.
+> Small templating engine that uses arrays as intermediate data.
 
-Pixie is a simple templating library, where _expressions_ are points where new data goes (such as `{{foobar}}`).  You can plug in custom _engines_ into Pixie in order to interpret these expressions however you want.  This allows you to build syntax and semantics inside of templates in a modular way.  Pixie itself is very lightweight, since it only provides the tools necessary to inject data and interpret the expressions.  It also works inside both the browser or Node.js.
+```js
+// Create intermediate data
+var template = pixie.parse('Foo {{bar}} baz')
+
+// Templates in format of [partials, expressions]
+//   template === [['Foo ', ' baz'], ['bar']]
+// Where:
+//   partials === ['Foo ', ' baz']
+//   expressions === ['bar']
+
+// Compile it against data
+pixie.compile(template, { bar: 'qux' })
+// => 'Foo qux baz'
+```
+
+These templates are stored in a simple intermediate format through arrays and strings.  They can be serialized as JSON, passed to 3rd party modules, and can exist natively with no dependencies.
 
 ## Installation
 ```shell
 $ npm install --save pixie
 ```
-Usable inside of the browser with Browserify/Webpack/other bundlers.
+Use inside of the browser with Browserify, Webpack, or other requirejs bundlers.
 
 ## Usage
 ```javascript

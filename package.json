@@ -2,7 +2,7 @@
   "name": "pixie",
   "author": "Jamen Marzonie",
   "version": "0.2.1",
-  "description": "A lightweight, pluggable, and browser/node-compatible templating engine.",
+  "description": "Small templating engine that uses arrays as intermediate data.",
   "main": "index.js",
   "repository": {
     "type": "git",
