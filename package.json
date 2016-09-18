@@ -1,7 +1,7 @@
 {
   "name": "pixie",
   "author": "Jamen Marzonie",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Small templating engine that uses arrays as intermediate data.",
   "main": "index.js",
   "repository": {
