@@ -1,11 +1,6 @@
-var NODATA = {}
-function compile (template, data) {
-  data = data || NODATA
-  var source = '', partials = template[0], expressions = template[1], index = 0,
-  max = expressions.length
-  while (index < max) source += partials[index] + (data[expressions[index++]] || '')
-  return source + partials[index]
-}
+exports.parse = parse
+exports.compile = compile
+exports.render = render
 
 function parse (source, open, close) {
   open = open || '{{', close = close || '}}'
@@ -22,6 +17,15 @@ function parse (source, open, close) {
   }
   partials.push(source.slice(index))
   return [partials, expressions]
+}
+
+var NODATA = {}
+function compile (template, data) {
+  data = data || NODATA
+  var source = '', partials = template[0], expressions = template[1], index = 0,
+  max = expressions.length
+  while (index < max) source += partials[index] + (data[expressions[index++]] || '')
+  return source + partials[index]
 }
 
 function render (source, data, open, close) {
