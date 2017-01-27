@@ -1,29 +1,36 @@
 {
   "name": "pixie",
-  "author": "Jamen Marzonie",
-  "version": "0.2.2",
-  "description": "Small templating engine that uses arrays as intermediate data.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jamen/pixie"
+  "description": "Tiny template engine",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jamen/pixie",
+  "author": "Jamen Marz (https://git.io/jamen)",
+  "repository": "jamen/pixie",
+  "bugs": {
+    "url": "https://github.com/jamen/pixie/issues"
   },
-  "scripts": {
-    "test": "eslint lib; tape 'test/*.js' | tap-spec",
-    "bench": "node bench"
-  },
-  "private": false,
+  "license": "MIT",
   "files": [
     "index.js"
   ],
-  "devDependencies": {
-    "benchmark": "^2.1.0",
-    "eslint": "^2.7.0",
-    "eslint-config-google": "^0.4.0",
-    "handlebars": "^4.0.5",
-    "precommit": "^1.2.0",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.5.1"
+  "engines": {
+    "node": ">=4"
   },
-  "license": "MIT"
+  "scripts": {
+    "test": "node test"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "handlebars": "^4.0.6",
+    "tape": "^4.6.3"
+  },
+  "keywords": [
+    "jamen",
+    "pixie",
+    "template",
+    "templating",
+    "engine",
+    "tiny",
+    "small",
+    "fast"
+  ]
 }
