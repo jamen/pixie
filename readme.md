@@ -1,7 +1,7 @@
 
 <h1 align="center"><img src="https://cdn.rawgit.com/jamen/pixie/master/docs/logo.svg" alt="pixie" width="500"><br><br></h1>
 
-> Tiny template engine
+> Tiny templating engine
 
 ```js
 var pixie = require('pixie')
