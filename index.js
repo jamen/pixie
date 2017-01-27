@@ -1,8 +1,8 @@
-exports.parse = parse
-exports.compile = compile
-exports.render = render
+module.exports = pixie
+pixie.compile = compile
+pixie.render = render
 
-function parse (source, open, close) {
+function pixie (source, open, close) {
   open = open || '{{'
   close = close || '}}'
 
@@ -36,5 +36,5 @@ function compile (template, data) {
 }
 
 function render (source, data, open, close) {
-  return compile(parse(source, open, close), data)
+  return compile(pixie(source, open, close), data)
 }

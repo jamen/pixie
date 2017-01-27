@@ -1,7 +1,0 @@
-{
-  "extends": "google",
-  "rules": {
-    "guard-for-in": 0,
-    "no-labels": 0
-  }
-}
