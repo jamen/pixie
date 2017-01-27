@@ -27,9 +27,7 @@ function pixie (source, open, close) {
   return [partials, expressions]
 }
 
-var NODATA = {}
 function compile (template, data) {
-  data = data || NODATA
   var source = '', partials = template[0], expressions = template[1], i = 0, end = expressions.length
   while (i < end) source += partials[i] + (data[expressions[i++]] || '')
   return source + partials[i]
