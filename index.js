@@ -17,7 +17,7 @@ function pixie (source, open, close) {
     first = source.indexOf(open)
     if (first < 0) break
     partials.push(source.slice(0, first))
-    last = source.indexOf(close, first)
+    last = source.indexOf(close, first + openLength)
     expressions.push(source.slice(first + openLength, last))
     source = source.slice(last + closeLength)
   }
