@@ -81,9 +81,8 @@ Compilers can choose to interpret and compile these however they choose.  The on
 
 ## License
 
-MIT © [Jamen Marz](https://git.io/jamen)
+MIT &copy; [Jamen Marz](https://git.io/jamen)
 
 ---
 
-[![version](https://img.shields.io/npm/v/pixie.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/pixie/jamen.svg?style=flat-square)](https://travis-ci.org/pixie/jamen) [![downloads/month](https://img.shields.io/npm/dm/pixie.svg?style=flat-square)][package] [![downloads](https://img.shields.io/npm/dt/pixie.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/pixie.svg?style=flat-square)][package] [![support me](https://img.shields.io/badge/support%20me-paypal-green.svg?style=flat-square)](https://www.paypal.me/jamenmarz/5usd) [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
-[package]: https://npmjs.com/package/pixie
+[![version](https://img.shields.io/npm/v/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![license](https://img.shields.io/npm/l/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![downloads/month](https://img.shields.io/npm/dm/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![downloads](https://img.shields.io/npm/dt/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![support me](https://img.shields.io/badge/support%20me-paypal-green.svg?style=flat-square)](https://www.paypal.me/jamenmarz/5usd) [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
