@@ -12,6 +12,12 @@ test('parse', function (t) {
   t.same(pixie('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags with same open and close')
 })
 
+test('render', function (t) {
+  t.plan(2)
+  t.is(render('foo{{bar}}baz{{qux}}qix', {bar: 'hello', qux: 'world'}), 'foohellobazworldqix', 'plain render')
+  t.is(render('<%foo%>bar<%baz%>qux<%qix%>', {foo: 'bar', baz: 'qux', qix: 'qaz'}, '<%', '%>'), 'barbarquxquxqaz', 'custom tags')
+})
+
 test('compile', function (t) {
   t.plan(4)
 
@@ -23,10 +29,4 @@ test('compile', function (t) {
   t.is(compile(sample2, {foo: 'foooo', baz: 'baaaz', qix: 'qiiix'}), 'foooobarbaaazquxqiiix', 'outer expressions')
   t.is(compile(sample3, {dummy: 'data'}), 'foo bar baz qux qix', 'no expressions')
   t.is(compile(sample1, {bar: 'baaar'}), 'foobaaarbazqix', 'missing data')
-})
-
-test('render', function (t) {
-  t.plan(2)
-  t.is(render('foo{{bar}}baz{{qux}}qix', {bar: 'hello', qux: 'world'}), 'foohellobazworldqix', 'plain render')
-  t.is(render('<%foo%>bar<%baz%>qux<%qix%>', {foo: 'bar', baz: 'qux', qix: 'qaz'}, '<%', '%>'), 'barbarquxquxqaz', 'custom tags')
 })
