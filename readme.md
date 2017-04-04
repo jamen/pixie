@@ -1,5 +1,5 @@
 
-<h1 align="center"><img src="https://cdn.rawgit.com/jamen/pixie/master/pixie.svg" alt="pixie" width="500"><br><br></h1>
+<h1 align='center'><img src='https://cdn.rawgit.com/jamen/pixie/master/pixie.svg' alt='pixie' width='492'></h1><br><br>
 
 > Tiny templating engine
 
