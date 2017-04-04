@@ -4,11 +4,12 @@ var compile = pixie.compile
 var render = pixie.render
 
 test('parse', function (t) {
-  t.plan(4)
+  t.plan(5)
   t.same(pixie('foo{{bar}}baz{{qux}}qix'), [['foo', 'baz', 'qix',], ['bar', 'qux']], 'inner expressions')
   t.same(pixie('{{foo}}bar{{baz}}qux{{qix}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
   t.same(pixie('foo bar baz qux qix'), [['foo bar baz qux qix'], []], 'no expressions')
   t.same(pixie('foo <%bar%> baz <%qux%>', '<%', '%>'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags')
+  t.same(pixie('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags with same open and close')
 })
 
 test('compile', function (t) {
