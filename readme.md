@@ -18,7 +18,7 @@ pixie.render('{{foo}} bar {{baz}}', { foo: 'Fuu', baz: 'boz' })
 // => 'Fuu bar boz'
 ```
 
-Pixie is a tiny ([>40 LOC](./index.js)) template engine base around arrays and strings.  It's made open-ended where you can compile templates with different syntax in the expressions.  See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for your options.
+Pixie is a tiny ([>50 LOC](./index.js)) template engine base around arrays and strings.  It's made open-ended where you can compile templates with different syntax in the expressions.  See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for your options.
 
 ## Installation
 
