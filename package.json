@@ -1,7 +1,7 @@
 {
   "name": "pixie",
   "description": "Tiny templating engine",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/jamen/pixie",
   "author": "Jamen Marz (https://git.io/jamen)",
   "repository": "jamen/pixie",
