@@ -72,10 +72,10 @@ pixie.render('Hello {{world}}!', { world: 'Mars' })
 <a name='structure'></a>
 ### Template structure
 
-The template structure is an array, containing two other arrays recognized as  `[partials, expression]`
+The template structure is an array, containing two other arrays recognized as  `[fragments, expression]`
 
  - **Expressions**: Data between the opening and closing points.  In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`
- - **Partials**: Data around your expressions.  In the same example, the partials would be `['Foo ', ' baz', '']`
+ - **Fragments**: Data around your expressions.  In the same example, the fragments would be `['Foo ', ' baz', '']`
 
 Compilers can choose to interpret and compile these however they choose.  The one `pixie` provides is just a simple point-n-place.
 
