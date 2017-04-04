@@ -18,7 +18,7 @@ pixie.render('{{foo}} bar {{baz}}', { foo: 'Fuu', baz: 'boz' })
 // => 'Fuu bar boz'
 ```
 
-Pixie is a tiny ([>50 LOC](./index.js)) template engine base around arrays and strings.  It's made open-ended where you can compile templates with different syntax in the expressions.  See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for your options.
+Pixie is a tiny ([>50 LOC](./index.js)) template engine base around arrays and strings. It's made open-ended where you can compile templates with different syntax in the expressions. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for your options.
 
 ## Installation
 
@@ -31,11 +31,11 @@ $ npm install --save pixie
 <a name='pixie'></a>
 ### `pixie(source, [open, close])`
 
-Parse the source into a [template](#structure).  This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie)).
+Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie)).
 
- - `source` (`String`): The template string source being parsed.
- - `open` (`String`): Symbol for opening expressions. Defaults to `{{`
- - `close` (`String`): Symbol for closing expressions.  Defaults to `}}`
+- `source` (`String`): The template string source being parsed.
+- `open` (`String`): Symbol for opening expressions. Defaults to `{{`
+- `close` (`String`): Symbol for closing expressions. Defaults to `}}`
 
 ```js
 // Parse normally:
@@ -72,12 +72,12 @@ pixie.render('Hello {{world}}!', { world: 'Mars' })
 <a name='structure'></a>
 ### Template structure
 
-The template structure is an array, containing two other arrays recognized as  `[fragments, expression]`
+The template structure is an array, containing two other arrays recognized as `[fragments, expression]`
 
- - **Expressions**: Data between the opening and closing points.  In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`
- - **Fragments**: Data around your expressions.  In the same example, the fragments would be `['Foo ', ' baz', '']`
+- **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`
+- **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`
 
-Compilers can choose to interpret and compile these however they choose.  The one `pixie` provides is just a simple point-n-place.
+Compilers can choose to interpret and compile these however they choose. The one `pixie` provides is just a simple point-n-place.
 
 ## License
 
