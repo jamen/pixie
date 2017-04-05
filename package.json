@@ -1,12 +1,12 @@
 {
   "name": "pixie",
-  "description": "Tiny templating engine",
+  "description": "Tiny template engine",
   "version": "1.1.0",
-  "homepage": "https://github.com/jamen/pixie",
+  "homepage": "https://github.com/pixiejs/pixie",
   "author": "Jamen Marz (https://git.io/jamen)",
-  "repository": "jamen/pixie",
+  "repository": "pixiejs/pixie",
   "bugs": {
-    "url": "https://github.com/jamen/pixie/issues"
+    "url": "https://github.com/pixiejs/pixie/issues"
   },
   "license": "MIT",
   "files": [

@@ -1,13 +1,14 @@
 
-<h1 align='center'><img src='https://cdn.rawgit.com/jamen/pixie/master/pixie.svg' alt='pixie' width='492'><br><br></h1>
+<h1 align='center'><img src='https://cdn.rawgit.com/pixiejs/pixie/master/pixie.svg' alt='pixie' width='492'><br><br></h1>
 
-> Tiny templating engine
+> Tiny template engine
 
 ```js
 var pixie = require('pixie')
 
 // Parse a template:
 var template = pixie('foo {{bar}} baz')
+// => [['foo ', ' baz'], ['bar']]
 
 // Compile (using simple default):
 pixie.compile(template, { bar: 'Baaar!' })
@@ -18,7 +19,7 @@ pixie.render('{{foo}} bar {{baz}}', { foo: 'Fuu', baz: 'boz' })
 // => 'Fuu bar boz'
 ```
 
-Pixie is a tiny ([>50 LOC](./index.js)) template engine base around arrays and strings. It's made open-ended where you can compile templates with different syntax in the expressions. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for your options.
+Pixie is a tiny ([>50 LOC](./index.js)) template engine that creates templates as arrays and strings.  This lets you use different compilers to support only the syntax you want (or the [simple built-in](#pixie_compile) one), or precompile templates, or serialize it as JSON. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for packages you can use with this
 
 ## Installation
 
@@ -29,13 +30,13 @@ $ npm install --save pixie
 ## Usage
 
 <a name='pixie'></a>
-### `pixie(source, [open, close])`
+### `pixie(source, open?, close?)`
 
-Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie)).
+Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie))
 
-- `source` (`String`): The template string source being parsed.
-- `open` (`String`): Symbol for opening expressions. Defaults to `{{`
-- `close` (`String`): Symbol for closing expressions. Defaults to `}}`
+- `source` **required**: The template string source being parsed
+- `open`: Tag for opening expressions (defaults to `{{`)
+- `close`: Tag for closing expressions (defaults to `}}`)
 
 ```js
 // Parse normally:
@@ -48,7 +49,10 @@ pixie('Hello <% world %>!', '<%', '%>')
 <a name='pixie_compile'></a>
 ### `pixie.compile(template, data)`
 
-A simple compiler, substitutes properties from an object by name.
+A simple compiler, substitutes properties from an object by name
+
+ - `template` **required**: A template object that was returned from [`pixie`](#pixie)
+ - `data`: An object/array that you want to insert the data into the expressions
 
 ```js
 // Parse a template:
@@ -62,7 +66,7 @@ pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 <a name='pixie_render'>
 ### `pixie.render(source, data, [open, close])`
 
-A combination of `pixie` and `pixie.compile` if you do not plan to reuse the template.
+A combination of `pixie` and `pixie.compile` if you do not plan to reuse the template
 
 ```js
 pixie.render('Hello {{world}}!', { world: 'Mars' })
@@ -72,12 +76,12 @@ pixie.render('Hello {{world}}!', { world: 'Mars' })
 <a name='structure'></a>
 ### Template structure
 
-The template structure is an array, containing two other arrays recognized as `[fragments, expression]`
+The template structure is an array, containing two other arrays recognized as `[fragments, expressions]`
 
 - **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`
 
-Compilers can choose to interpret and compile these however they choose. The one `pixie` provides is just a simple point-n-place.
+Compilers can choose to interpret and compile these however they choose. The `pixie.compile` ones is just a simple point-n-place
 
 ## License
 
