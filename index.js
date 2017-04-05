@@ -34,7 +34,13 @@ function compile (template, data) {
   var length = expressions.length
 
   for (var i = 0; i < length; i++) {
-    source += fragments[i] + (data[expressions[i]] || '')
+    source += fragments[i]
+
+    var value = data[expressions[i]]
+
+    if (value) {
+      source += value
+    }
   }
 
   return source + fragments[i]
