@@ -30,6 +30,7 @@ $ npm install --save pixie
 ## Usage
 
 <a name='pixie'></a>
+
 ### `pixie(source, open?, close?)`
 
 Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie))
@@ -47,6 +48,7 @@ pixie('Hello <% world %>!', '<%', '%>')
 ```
 
 <a name='pixie_compile'></a>
+
 ### `pixie.compile(template, data)`
 
 A simple compiler, substitutes properties from an object by name
@@ -63,8 +65,9 @@ pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 // => 'foo baaar baz quuux'
 ```
 
-<a name='pixie_render'>
-### `pixie.render(source, data, [open, close])`
+<a name='pixie_render'></a>
+
+### `pixie.render(source, data, open?, close?)`
 
 A combination of `pixie` and `pixie.compile` if you do not plan to reuse the template
 
@@ -74,6 +77,7 @@ pixie.render('Hello {{world}}!', { world: 'Mars' })
 ```
 
 <a name='structure'></a>
+
 ### Template structure
 
 The template structure is an array, containing two other arrays recognized as `[fragments, expressions]`
