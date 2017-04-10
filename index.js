@@ -31,9 +31,8 @@ function compile (template, data) {
   var source = ''
   var fragments = template[0]
   var expressions = template[1]
-  var length = expressions.length
 
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < expressions.length; i++) {
     source += fragments[i]
 
     var value = data[expressions[i]]
