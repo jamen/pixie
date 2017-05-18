@@ -37,9 +37,7 @@ function compile (template, data) {
 
     var value = data[expressions[i]]
 
-    if (value) {
-      source += value
-    }
+    value && (source += value)
   }
 
   return source + fragments[i]
