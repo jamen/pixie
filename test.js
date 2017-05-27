@@ -5,7 +5,7 @@ var render = pixie.render
 
 test('parse', function (t) {
   t.plan(5)
-  t.same(pixie('foo{{bar}}baz{{qux}}qix'), [['foo', 'baz', 'qix',], ['bar', 'qux']], 'inner expressions')
+  t.same(pixie('foo{{bar}}baz{{qux}}qix'), [['foo', 'baz', 'qix'], ['bar', 'qux']], 'inner expressions')
   t.same(pixie('{{foo}}bar{{baz}}qux{{qix}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
   t.same(pixie('foo bar baz qux qix'), [['foo bar baz qux qix'], []], 'no expressions')
   t.same(pixie('foo <%bar%> baz <%qux%>', '<%', '%>'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags')
