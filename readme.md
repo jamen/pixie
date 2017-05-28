@@ -29,7 +29,7 @@ $ npm i pixie
 
 ### `pixie.parse(source, open, close)`
 
-Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie))
+Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#compile) or [others](https://npmjs.com/browse/keyword/pixie))
 
 - `source`: The template string source being parsed
 - `open`: Tag for opening expressions
@@ -49,7 +49,7 @@ pixie.parse('Hello <%world%>!', '<%', '%>')
 
 A simple compiler, substitutes properties from an object by name
 
-- `template`: A template object that was returned from [`pixie`](#pixie)
+- `template`: A template object that was returned from [`pixie.parse`](#parse)
 - `data`: An object/array that you want to insert the data into the expressions
 
 ```js
