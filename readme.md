@@ -6,74 +6,59 @@
 ```js
 var pixie = require('pixie')
 
-// Parse a template:
-var template = pixie('foo {{bar}} baz')
+// Parse a template
+var template = pixie.parse('foo {{bar}} baz', '{{', '}}')
 // => [['foo ', ' baz'], ['bar']]
 
-// Compile (using simple default):
+// Compile (using simple default)
 pixie.compile(template, { bar: 'Baaar!' })
 // => 'foo Baaar! baz'
-
-// Render if you're lazy:
-pixie.render('{{foo}} bar {{baz}}', { foo: 'Fuu', baz: 'boz' })
-// => 'Fuu bar boz'
 ```
 
-Pixie is a tiny ([>60 LOC](./index.js)) template engine that creates templates as arrays and strings.  This lets you use different compilers to support only the syntax you want (or the [simple built-in](#pixie_compile) one), or precompile templates, or serialize it as JSON. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for packages you can use with this
+Pixie is a tiny template engine (321 bytes uglified and [27 SLOC](./index.js)) that creates templates as arrays of strings. This lets you use alternative compilers to support only the syntax you want, precompile templates, or serialize templates as JSON. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for more packages.
 
 ## Installation
 
 ```sh
-$ npm install --save pixie
+$ npm i pixie
 ```
 
 ## Usage
 
-<a name='pixie'></a>
+<a name='parse'></a>
 
-### `pixie(source, open?, close?)`
+### `pixie.parse(source, open, close)`
 
-Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#pixie_compile) or [others](https://npmjs.com/browse/keyword/pixie))
+Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#compile) or [others](https://npmjs.com/browse/keyword/pixie))
 
-- `source` **required**: The template string source being parsed
-- `open`: Tag for opening expressions (defaults to `{{`)
-- `close`: Tag for closing expressions (defaults to `}}`)
+- `source`: The template string source being parsed
+- `open`: Tag for opening expressions
+- `close`: Tag for closing expressions
 
 ```js
-// Parse normally:
-pixie('Hello {{world}} foo {{bar}} baz.')
+// Parse with tags
+pixie.parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
 
-// With custom tags:
-pixie('Hello <% world %>!', '<%', '%>')
+// Parse with alternative tags
+pixie.parse('Hello <%world%>!', '<%', '%>')
 ```
 
-<a name='pixie_compile'></a>
+<a name='compile'></a>
 
 ### `pixie.compile(template, data)`
 
 A simple compiler, substitutes properties from an object by name
 
- - `template` **required**: A template object that was returned from [`pixie`](#pixie)
- - `data`: An object/array that you want to insert the data into the expressions
+- `template`: A template object that was returned from [`pixie.parse`](#parse)
+- `data`: An object/array that you want to insert the data into the expressions
 
 ```js
-// Parse a template:
-var template = pixie('foo {{bar}} baz {{qux}}')
+// Parse a template
+var template = pixie.parse('foo {{bar}} baz {{qux}}')
 
-// Compile template:
+// Compile template
 pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 // => 'foo baaar baz quuux'
-```
-
-<a name='pixie_render'></a>
-
-### `pixie.render(source, data, open?, close?)`
-
-A combination of `pixie` and `pixie.compile` if you do not plan to reuse the template
-
-```js
-pixie.render('Hello {{world}}!', { world: 'Mars' })
-// => 'Hello Mars!'
 ```
 
 <a name='structure'></a>
