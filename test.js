@@ -4,12 +4,19 @@ var parse = pixie.parse
 var compile = pixie.compile
 
 test('parse', function (t) {
-  t.plan(5)
+  t.plan(4)
   t.same(parse('foo{{bar}}baz{{qux}}qix', '{{', '}}'), [['foo', 'baz', 'qix'], ['bar', 'qux']], 'inner expressions')
   t.same(parse('{{foo}}bar{{baz}}qux{{qix}}', '{{', '}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
   t.same(parse('foo bar baz qux qix', '{{', '}}'), [['foo bar baz qux qix'], []], 'no expressions')
-  t.same(parse('foo <%bar%> baz <%qux%>', '<%', '%>'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags')
-  t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'custom tags with same open and close')
+  t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
+})
+
+test('balance', function (t) {
+  t.plan(4)
+  t.same(parse('foo{{bar{{baz}}qux}}qix', '{{', '}}'), [['foo', 'baz', 'qix'], ['bar', 'qux']], 'nested expression')
+  t.same(parse('{{foo}}bar{{baz}}qux{{qix}}', '{{', '}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
+  t.same(parse('foo bar baz qux qix', '{{', '}}'), [['foo bar baz qux qix'], []], 'no expressions')
+  t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
 })
 
 test('compile', function (t) {
