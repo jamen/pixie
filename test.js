@@ -11,14 +11,6 @@ test('parse', function (t) {
   t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
 })
 
-test('balance', function (t) {
-  t.plan(4)
-  t.same(parse('foo{{bar{{baz}}qux}}qix', '{{', '}}'), [['foo', 'baz', 'qix'], ['bar', 'qux']], 'nested expression')
-  t.same(parse('{{foo}}bar{{baz}}qux{{qix}}', '{{', '}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
-  t.same(parse('foo bar baz qux qix', '{{', '}}'), [['foo bar baz qux qix'], []], 'no expressions')
-  t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
-})
-
 test('compile', function (t) {
   t.plan(4)
 
