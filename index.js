@@ -21,9 +21,9 @@ exports.compile = function (template, data) {
   var source = ''
   var fragments = template[0]
   var expressions = template[1]
-  for (var i = 0, length = expressions.length; i < length; i++) {
+  for (var i = 0, length = expressions.length; i < length;) {
     source += fragments[i]
-    source += data[expressions[i]]
+    source += data[expressions[i++]]
   }
   return source + fragments[i]
 }
