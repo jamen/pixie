@@ -13,7 +13,7 @@ exports.parse = function (source, open, close) {
     expressions[i++] = source.slice(first, last)
     last += closeLength
   }
-  fragments[i] = source.slice(last)
+  if (i === last) fragments[i] = source.slice(last)
   return [fragments, expressions]
 }
 
@@ -25,5 +25,6 @@ exports.compile = function (template, data) {
     source += fragments[i]
     source += data[expressions[i++]]
   }
-  return source + fragments[i]
+  if (i !== fragments.length) source += fragments[i]
+  return source
 }
