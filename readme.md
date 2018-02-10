@@ -1,21 +1,7 @@
 
 <h1 align='center'><img src='https://cdn.rawgit.com/pixiejs/pixie/master/pixie.svg' alt='pixie' width='492'><br><br></h1>
 
-> Tiny template engine
-
-```js
-var pixie = require('pixie')
-
-// Parse a template
-var template = pixie.parse('foo {{bar}} baz', '{{', '}}')
-// => [['foo ', ' baz'], ['bar']]
-
-// Compile (using simple default)
-pixie.compile(template, { bar: 'Baaar!' })
-// => 'foo Baaar! baz'
-```
-
-Pixie is a tiny template engine (321 bytes uglified and [27 SLOC](./index.js)) that creates templates as arrays of strings. This lets you use alternative compilers to support only the syntax you want, precompile templates, or serialize templates as JSON. See the [`pixie`](https://npmjs.com/browse/keyword/pixie) keyword on npm for more packages.
+A tiny templater (321 bytes minified) that creates templates as arrays of strings.  It can be precompiled, swap in different compilers, or used inside other JSON projects.
 
 ## Installation
 
@@ -25,11 +11,9 @@ $ npm i pixie
 
 ## Usage
 
-<a name='parse'></a>
+### `parse(source, open, close)`
 
-### `pixie.parse(source, open, close)`
-
-Parse the source into a [template](#structure). This is passed off to a `compile` (e.g. [`pixie.compile`](#compile) or [others](https://npmjs.com/browse/keyword/pixie))
+Parse the source into a template, which is passed off to a a compiler.
 
 - `source`: The template string source being parsed
 - `open`: Tag for opening expressions
@@ -37,15 +21,13 @@ Parse the source into a [template](#structure). This is passed off to a `compile
 
 ```js
 // Parse with tags
-pixie.parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
+parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
 
 // Parse with alternative tags
-pixie.parse('Hello <%world%>!', '<%', '%>')
+parse('Hello <%world%>!', '<%', '%>')
 ```
 
-<a name='compile'></a>
-
-### `pixie.compile(template, data)`
+### `compile(template, data)`
 
 A simple compiler, substitutes properties from an object by name
 
@@ -54,10 +36,10 @@ A simple compiler, substitutes properties from an object by name
 
 ```js
 // Parse a template
-var template = pixie.parse('foo {{bar}} baz {{qux}}')
+var template = parse('foo {{bar}} baz {{qux}}')
 
 // Compile template
-pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
+compile(template, { bar: 'baaar', qux: 'quuux' })
 // => 'foo baaar baz quuux'
 ```
 
@@ -65,12 +47,15 @@ pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 
 ### Template structure
 
-The template structure is an array, containing two other arrays recognized as `[fragments, expressions]`
+Templates are an array of `[fragments, expressions]`.  The source of this
+template can look something like this:
 
-- **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`
-- **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`
+```
+Hello, {{world}}! How is {{person}}?
+```
 
-Compilers can choose to interpret and compile these however they choose. The `pixie.compile` ones is just a simple point-n-place
+- **Expressions** are the strings inside your tokens. `'world'` and `'person'` in the example.
+- **Fragments** are the strings outside the expressions.
 
 ## License
 

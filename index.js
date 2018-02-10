@@ -1,4 +1,3 @@
-'use strict'
 
 exports.parse = function (source, open, close) {
   var openLength = open.length
