@@ -25,7 +25,7 @@ npm i pixie
 
 ### `parse(source, open, close)`
 
-Converts `source` to a template.
+Converts a string to a template.
 
 - `source`: template string source being parsed
 - `open`: tag for opening expressions
