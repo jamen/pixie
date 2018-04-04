@@ -1,7 +1,7 @@
 {
   "name": "pixie",
   "version": "2.0.0",
-  "description": "Tiny template engine",
+  "description": "Tiny template engine (371 bytes uglified and gziped)",
   "author": "Jamen Marz (http://jamenmarz.com/)",
   "license": "MIT",
   "main": "dist/pixie.js",
