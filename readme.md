@@ -55,7 +55,7 @@ pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 
 ### Template structure
 
-Aan array containing two other arrays recognized as `[fragments, expressions]`.
+An array containing two other arrays recognized as `[fragments, expressions]`.
 
 - **Expressions**: Data between opening and closing tags. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
