@@ -33,7 +33,7 @@ function render (source, data, open, close) {
   var result = ''
   var first
   var last
-  for (var i = 0; (first = source.indexOf(open, last)) > -1;) {
+  for (; (first = source.indexOf(open, last)) > -1;) {
     result += source.slice(last, first)
     last = source.indexOf(close, first += openLength)
     result += data[source.slice(first, last)]
