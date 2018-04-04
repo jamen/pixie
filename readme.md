@@ -33,7 +33,7 @@ Converts a string to a template.
 
 ```js
 // Parse with tags
-pixie.parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
+parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
 
 // Parse with alternate tags
 pixie.parse('Hello <%world%>!', '<%', '%>')
