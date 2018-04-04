@@ -4,12 +4,22 @@ var parse = pixie.parse
 var compile = pixie.compile
 var render = pixie.render
 
+function renderOG (source, data, open, close) {
+  return compile(parse(source, open, close), data)
+}
+
 test('parse', function (t) {
   t.plan(4)
-  t.same(parse('foo{{bar}}baz{{qux}}qix', '{{', '}}'), [['foo', 'baz', 'qix'], ['bar', 'qux']], 'inner expressions')
-  t.same(parse('{{foo}}bar{{baz}}qux{{qix}}', '{{', '}}'), [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
-  t.same(parse('foo bar baz qux qix', '{{', '}}'), [['foo bar baz qux qix'], []], 'no expressions')
-  t.same(parse('foo __bar__ baz __qux__', '__', '__'), [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
+
+  var sample1 = parse('foo{{bar}}baz{{qux}}qix', '{{', '}}')
+  var sample2 = parse('{{foo}}bar{{baz}}qux{{qix}}', '{{', '}}')
+  var sample3 = parse('foo bar baz qux qix', '{{', '}}')
+  var sample4 = parse('foo __bar__ baz __qux__', '__', '__')
+
+  t.same(sample1, [['foo', 'baz', 'qix'], ['bar', 'qux']], 'inner expressions')
+  t.same(sample2, [['', 'bar', 'qux', ''], ['foo', 'baz', 'qix']], 'outer expressions')
+  t.same(sample3, [['foo bar baz qux qix'], []], 'no expressions')
+  t.same(sample4, [['foo ', ' baz ', ''], ['bar', 'qux']], 'same open and close tags')
 })
 
 test('compile', function (t) {
@@ -25,8 +35,17 @@ test('compile', function (t) {
   t.is(compile(sample1, { bar: 'baaar' }), 'foobaaarbazundefinedqix', 'missing data')
 })
 
-test('render', function (t) {
-  t.plan(2)
-  t.is(render('foo{{bar}}baz{{qux}}qix', {bar: 'hello', qux: 'world'}, '{{', '}}'), 'foohellobazworldqix', 'plain render')
-  t.is(render('<%foo%>bar<%baz%>qux<%qix%>', {foo: 'bar', baz: 'qux', qix: 'qaz'}, '<%', '%>'), 'barbarquxquxqaz', 'custom tags')
-})
+function renderTest (render) {
+  test('render', function (t) {
+    t.plan(2)
+
+    var sample1 = render('foo{{bar}}baz{{qux}}qix', { bar: 'hello', qux: 'world' }, '{{', '}}')
+    var sample2 = render('<%foo%>bar<%baz%>qux<%qix%>', { foo: 'bar', baz: 'qux', qix: 'qaz' }, '<%', '%>')
+
+    t.is(sample1, 'foohellobazworldqix', 'plain render')
+    t.is(sample2, 'barbarquxquxqaz', 'custom tags')
+  })
+}
+
+renderTest(render)
+renderTest(renderOG)
