@@ -1,0 +1,2 @@
+!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?n(exports):"function"==typeof define&&define.amd?define(["exports"],n):n(e.pixie={})}(this,function(e){"use strict";e.parse=function(e,n,t){for(var i,o,f=n.length,r=t.length,c=[],u=[],d=0;-1<(i=e.indexOf(n,o));)c[d]=e.slice(o,i),o=e.indexOf(t,i+=f),u[d++]=e.slice(i,o),o+=r;return c[d]=e.slice(o),[c,u]},e.compile=function(e,n){for(var t="",i=e[0],o=e[1],f=0,r=o.length;f<r;)t+=i[f],t+=n[o[f++]];return t+i[f]},Object.defineProperty(e,"__esModule",{value:!0})});
+//# sourceMappingURL=pixie.js.map

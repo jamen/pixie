@@ -1,6 +1,7 @@
+
 'use strict'
 
-exports.parse = function (source, open, close) {
+function parse (source, open, close) {
   var openLength = open.length
   var closeLength = close.length
   var fragments = []
@@ -17,7 +18,7 @@ exports.parse = function (source, open, close) {
   return [fragments, expressions]
 }
 
-exports.compile = function (template, data) {
+function compile (template, data) {
   var source = ''
   var fragments = template[0]
   var expressions = template[1]
@@ -27,3 +28,5 @@ exports.compile = function (template, data) {
   }
   return source + fragments[i]
 }
+
+export { parse, compile }
