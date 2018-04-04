@@ -29,6 +29,7 @@
     "uglify-js": "^3.3.18"
   },
   "dependencies": {
-    "@jamen/bench": "^0.2.0"
+    "@jamen/bench": "^0.2.0",
+    "minimist": "^1.2.0"
   }
 }

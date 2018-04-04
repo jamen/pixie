@@ -60,6 +60,14 @@ An array containing two other arrays recognized as `[fragments, expressions]`.
 - **Expressions**: Data between opening and closing tags. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
 
+### Command-line Interface
+
+The package also includes a CLI.  It just parses stdin and compiles stdout.
+
+```sh
+pixie --name "John Doe" < template.src.md > template.md
+```
+
 ## License
 
 MIT &copy; [Jamen Marz](http://jamenmarz.com/)
