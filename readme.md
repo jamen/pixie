@@ -44,7 +44,7 @@ pixie.parse('Hello <%world%>!', '<%', '%>')
 Substitutes values from an object by key.
 
 - `template`: template object that was returned from `parse`
-- `data`: object/array to insert into the expressions
+- `data`: object or array to insert into the expressions
 
 ```js
 var template = pixie.parse('foo {{bar}} baz {{qux}}')
