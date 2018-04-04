@@ -3,7 +3,7 @@
   <img src=https://cdn.rawgit.com/pixiejs/pixie/master/pixie.svg alt=pixie height=64>
 </h1>
 
-> Tiny template engine (371 bytes uglified and gziped)
+> Tiny template engine (422 bytes uglified and gziped)
 
 ```js
 const { parse, compile } = require('pixie')
