@@ -3,7 +3,7 @@
   <img src=https://cdn.rawgit.com/pixiejs/pixie/master/pixie.svg alt=pixie height=64>
 </h1>
 
-> Tiny template engine (371 bytes uglified and gziped)
+> Tiny template engine (422 bytes uglified and gziped)
 
 ```js
 const { parse, compile } = require('pixie')
@@ -59,6 +59,14 @@ An array containing two other arrays recognized as `[fragments, expressions]`.
 
 - **Expressions**: Data between opening and closing tags. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
+
+### Command-line Interface
+
+The package also includes a CLI.  It just parses stdin and compiles stdout.
+
+```sh
+pixie --name "John Doe" < template.src.md > template.md
+```
 
 ## License
 

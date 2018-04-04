@@ -1,40 +1,35 @@
 {
   "name": "pixie",
   "version": "2.0.0",
-  "description": "Tiny template engine (371 bytes uglified and gziped)",
+  "description": "Tiny template engine (422 bytes uglified and gziped)",
   "author": "Jamen Marz (http://jamenmarz.com/)",
   "license": "MIT",
   "main": "dist/pixie.js",
-  "module": "src/index.js",
+  "module": "src/pixie.js",
+  "bin": "bin/pixie-cli.js",
+  "repository": "jamen/pixie",
   "scripts": {
-    "test": "node test",
-    "rollup": "rollup index.js -o dist/pixie.js -f umd -n pixie -m",
+    "rollup": "rollup src/pixie.js -o dist/pixie.js -f umd -n pixie -m",
     "uglify": "uglifyjs dist/pixie.js -o dist/pixie.js -c -m --source-map content='dist/pixie.js.map',url='pixie.js.map'",
-    "gzip": "gzip -k dist/pixie.js",
-    "build": "npm run rollup && npm run uglify && npm run gzip"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jamen/pixie.git"
+    "gzip": "gzip -k -n -9 -f dist/pixie.js",
+    "build": "npm run rollup && npm run uglify && npm run gzip",
+    "bench": "npm run build && node test/bench",
+    "test": "npm run build && node test/test"
   },
   "bugs": {
     "url": "https://github.com/jamen/pixie/issues"
   },
   "homepage": "https://github.com/jamen/pixie#readme",
-  "keywords": [
-    "jamen",
-    "pixie",
-    "template",
-    "templating",
-    "engine",
-    "tiny",
-    "small",
-    "fast"
-  ],
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "nanobench": "^2.1.1",
     "rollup": "^0.57.1",
+    "systeminformation": "^3.37.9",
     "tape": "^4.9.0",
     "uglify-js": "^3.3.18"
+  },
+  "dependencies": {
+    "@jamen/bench": "^0.2.0",
+    "minimist": "^1.2.0"
   }
 }

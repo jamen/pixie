@@ -1,27 +1,30 @@
-var bench = require('nanobench')
-var pixie = require('./')
+var pixie = require('../dist/pixie.js')
+var benchmark = require('@jamen/bench')
 
 var parse = pixie.parse
 var compile = pixie.compile
+var render = pixie.render
 
 var sample = 'hello {{world}} foo {{bar}} baz {{qux}} qix'
 var template = parse(sample, '{{', '}}')
 var data = { world: 'WORLD', bar: 'BAR', qux: 'QUX' }
 
-bench('pixie.parse', function (b) {
-  b.start()
+let bench = benchmark()
+
+bench.add('parse', () => {
   parse(sample, '{{', '}}')
-  b.end()
 })
 
-bench('pixie.compile', function (b) {
-  b.start()
+bench.add('compile', () => {
   compile(template, data)
-  b.end()
 })
 
-bench('pixie.parse + pixie.compile (render)', function (b) {
-  b.start()
-  compile(parse(sample, '{{', '}}'), data)
-  b.end()
+bench.add('render', () => {
+  render(sample, data, '{{', '}}')
 })
+
+bench.add('render (c & p)', () => {
+  compile(parse(sample, '{{', '}}'), data)
+})
+
+bench.run()

@@ -1,6 +1,4 @@
 
-'use strict'
-
 function parse (source, open, close) {
   var openLength = open.length
   var closeLength = close.length
@@ -29,4 +27,19 @@ function compile (template, data) {
   return source + fragments[i]
 }
 
-export { parse, compile }
+function render (source, data, open, close) {
+  var openLength = open.length
+  var closeLength = close.length
+  var result = ''
+  var first
+  var last
+  for (; (first = source.indexOf(open, last)) > -1;) {
+    result += source.slice(last, first)
+    last = source.indexOf(close, first += openLength)
+    result += data[source.slice(first, last)]
+    last += closeLength
+  }
+  return result + source.slice(last)
+}
+
+export { parse, compile, render }
