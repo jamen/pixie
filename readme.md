@@ -18,7 +18,7 @@ compile(template, { bar: 'Baaar!' })
 ## Install
 
 ```sh
-$ npm i pixie
+npm i pixie
 ```
 
 ## Usage
@@ -57,7 +57,7 @@ pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 
 Aan array containing two other arrays recognized as `[fragments, expressions]`.
 
-- **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
+- **Expressions**: Data between opening and closing tags. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
 
 ## License
