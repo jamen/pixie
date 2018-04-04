@@ -3,22 +3,17 @@
   <img src=https://cdn.rawgit.com/pixiejs/pixie/master/pixie.svg alt=pixie height=64>
 </h1>
 
-> Tiny template engine
+> Tiny template engine (371 bytes uglified and gziped)
 
 ```js
-var pixie = require('pixie')
+const { parse, compile } = require('pixie')
 
-// Parse a template
-var template = pixie.parse('foo {{bar}} baz', '{{', '}}')
+const template = parse('foo {{bar}} baz', '{{', '}}')
 // => [['foo ', ' baz'], ['bar']]
 
-// Compile (using simple default)
-pixie.compile(template, { bar: 'Baaar!' })
+compile(template, { bar: 'Baaar!' })
 // => 'foo Baaar! baz'
 ```
-
-Pixie is a tiny template engine (371 bytes uglified and gziped) that returns arrays of strings.
-This is great for precompiling templates or serializing templates as JSON.
 
 ## Install
 
@@ -28,43 +23,41 @@ $ npm i pixie
 
 ## Usage
 
-### `pixie.parse(source, open, close)`
+### `parse(source, open, close)`
 
-Converts the source into a template.
+Converts `source` to a template.
 
-- `source`: The template string source being parsed.
-- `open`: Tag for opening expressions.
-- `close`: Tag for closing expressions.
+- `source`: template string source being parsed
+- `open`: tag for opening expressions
+- `close`: tag for closing expressions
 
 ```js
 // Parse with tags
 pixie.parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
 
-// Parse with alternative tags
+// Parse with alternate tags
 pixie.parse('Hello <%world%>!', '<%', '%>')
 ```
 
-### `pixie.compile(template, data)`
+### `compile(template, data)`
 
-Substitutes properties from an object by name.
+Substitutes values from an object by key.
 
-- `template`: A template object that was returned from `pixie.parse`.
-- `data`: An object/array that you want to insert the data into the expressions.
+- `template`: template object that was returned from `parse`
+- `data`: object/array to insert into the expressions
 
 ```js
-// Parse a template
 var template = pixie.parse('foo {{bar}} baz {{qux}}')
 
-// Compile template
 pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
 // => 'foo baaar baz quuux'
 ```
 
 ### Template structure
 
-The template structure is an array, containing two other arrays recognized as `[fragments, expressions]`.
+Aan array containing two other arrays recognized as `[fragments, expressions]`.
 
-- **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` they would be `['bar', 'qux']`.
+- **Expressions**: Data between the opening and closing points. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
 - **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
 
 ## License
