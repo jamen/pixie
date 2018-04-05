@@ -36,7 +36,7 @@ Converts a string to a template.
 parse('Hello {{world}} foo {{bar}} baz.', '{{', '}}')
 
 // Parse with alternate tags
-pixie.parse('Hello <%world%>!', '<%', '%>')
+parse('Hello <%world%>!', '<%', '%>')
 ```
 
 ### `compile(template, data)`
@@ -47,18 +47,30 @@ Replaces values from an object by key.
 - `data`: object or array to insert into the expressions
 
 ```js
-var template = pixie.parse('foo {{bar}} baz {{qux}}')
+var template = parse('foo {{bar}} baz {{qux}}')
 
-pixie.compile(template, { bar: 'baaar', qux: 'quuux' })
-// => 'foo baaar baz quuux'
+compile(template, { bar: 'baaar', qux: 'quuux' })
+// 'foo baaar baz quuux'
+```
+
+### `render(source, data, open, close)`
+
+An alternative to doing `compile(parse(source, open, close), data)`, it is slightly faster and creates no intermediate template.
+
+```js
+render('Hello, {{world}}!', { world: 'Earth' }, '{{', '}}')
+// 'Hello Earth!'
 ```
 
 ### Template structure
 
-An array containing two other arrays recognized as `[fragments, expressions]`.
+Given some template source:
 
-- **Expressions**: Data between opening and closing tags. In `Foo {{bar}} baz {{qux}}` it would be `['bar', 'qux']`.
-- **Fragments**: Data around your expressions. In the same example, the fragments would be `['Foo ', ' baz', '']`.
+```
+Hello, {{world}}! I am {{person}}.
+```
+
+This is parsed into a template as `[fragments, expressions]`.  The expressions would be `['world', 'person']`, and the fragments be the data surrounding the expressions `['Hello, ', '! I am ', '.']`.  Compilers interpret these to create their output.
 
 ### Command-line Interface
 
@@ -71,7 +83,3 @@ pixie --name "John Doe" < template.src.md > template.md
 ## License
 
 MIT &copy; [Jamen Marz](http://jamenmarz.com/)
-
----
-
-[![version](https://img.shields.io/npm/v/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![license](https://img.shields.io/npm/l/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![downloads/month](https://img.shields.io/npm/dm/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![downloads](https://img.shields.io/npm/dt/pixie.svg?style=flat-square)](https://npmjs.com/package/pixie) [![support me](https://img.shields.io/badge/support%20me-paypal-green.svg?style=flat-square)](https://www.paypal.me/jamenmarz/5usd) [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
